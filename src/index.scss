@@ -1,0 +1,34 @@
+$title : 'Lobster', cursive;
+$sub-title: 'Yeseva One', cursive;
+$text-w : #ffffff;
+@import "node_modules/materialize-css/sass/materialize.scss";
+
+//-------------------------------------normalizar los contenedores padres-----------------------------------------------------------
+html,body, .body-container{
+margin:0px;
+height:100%;
+}
+
+
+
+//------------------------------------------estilos angel mendoza--------------------------------------------------------------------
+#main{
+  height: 100%;
+  background-color: #0e2b3f;
+}
+.main-img{
+  margin: 12% auto;
+}
+.main-text{
+  margin: 10% auto;
+  h1{
+    color: $text-w;
+    font-size: 5em;
+    font-family: $title;
+  }
+  h2{
+    color: $text-w;
+    font-size: 2.5em;
+    font-family: $sub-title;
+  }
+}
