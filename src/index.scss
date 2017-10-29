@@ -3,32 +3,88 @@ $sub-title: 'Yeseva One', cursive;
 $text-w : #ffffff;
 @import "node_modules/materialize-css/sass/materialize.scss";
 
-//-------------------------------------normalizar los contenedores padres-----------------------------------------------------------
+//-------------------------------------normalizar los contenedores padres-------------------------------------------------------
 html,body, .body-container{
 margin:0px;
 height:100%;
 }
 
+//---------------------------------------------- clases generales --------------------------------------------------------------
+//botones
+.btn .fa{
+	margin-right: 5px;
+	font-size: 1rem;
+}
+.btn-ornage{
+	border-radius: 25px;
+	background-color: #f2a626;
+}
+.btn-ornage:hover{
+	background-color: #f1af40;
+}
 
 
-//------------------------------------------estilos angel mendoza--------------------------------------------------------------------
+//------------------------------------------estilos angel mendoza----------------------------------------------------------------
 #main{
-  height: 100%;
-  background-color: #0e2b3f;
+	height: 100%;
+	background-color: #0e2b3f;
 }
 .main-img{
-  margin: 12% auto;
+	margin: 12% auto;
 }
 .main-text{
-  margin: 10% auto;
-  h1{
-    color: $text-w;
-    font-size: 5em;
-    font-family: $title;
-  }
-  h2{
-    color: $text-w;
-    font-size: 2.5em;
-    font-family: $sub-title;
-  }
+	margin: 10% auto;
+	h1{
+		color: $text-w;
+		font-size: 5em;
+		font-family: $title;
+	}
+	h2{
+		color: $text-w;
+		font-size: 2.5em;
+		font-family: $sub-title;
+	}
+}
+
+//------------------------------------------home------------------------------------------------------------------------------------
+.homepage-hero-module {
+    border-right: none;
+    border-left: none;
+    position: relative;
+}
+.no-video .video-container video,
+.touch .video-container video {
+    display: none;
+}
+.no-video .video-container .poster,
+.touch .video-container .poster {
+    display: block !important;
+}
+.video-container {
+    position: relative;
+    bottom: 0%;
+    left: 0%;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background: #000;
+}
+.video-container .poster img {
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+}
+.video-container .filter {
+    z-index: 100;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.4);
+    width: 100%;
+}
+.video-container video {
+    position: absolute;
+    z-index: 0;
+    bottom: 0;
+}
+.video-container video.fillWidth {
+    width: 100%;
 }

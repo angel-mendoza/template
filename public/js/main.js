@@ -24,15 +24,29 @@ exports.reset = function(){
 },{}],2:[function(require,module,exports){
 'use strict';
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+  };
+}();
 
 var _template = require('./template');
 
 var _template2 = _interopRequireDefault(_template);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
 
 var title = require('title');
 
@@ -44,6 +58,12 @@ var Template = function () {
     this.title = 'Development';
     this.onClick();
     this.render();
+    this.enrutador();
+    this.scaleVideoContainer();
+
+    this.initBannerVideoSize('.video-container .poster img');
+    this.initBannerVideoSize('.video-container .filter');
+    this.initBannerVideoSize('.video-container video');
   }
 
   _createClass(Template, [{
@@ -52,9 +72,9 @@ var Template = function () {
       var _this = this;
 
       $(".nav-element").on('click', function (event) {
-        var conten = $(event.currentTarget).data('href');
-        _this.body = _template2.default + '.' + conten;
-        _this.title = conten;
+        var seccion = $(event.currentTarget).data('href');
+        _this.body = _this.enrutador(seccion);
+        _this.title = seccion;
         _this.render();
       });
     }
@@ -63,6 +83,73 @@ var Template = function () {
     value: function render() {
       $('.body-container').html(this.body);
       title(this.title);
+    }
+  }, {
+    key: 'enrutador',
+    value: function enrutador(ruta) {
+      if (ruta == "home") {
+        return _template2.default.home;
+      } else if (ruta == "Sass") {
+        return _template2.default.Sass;
+      } else {
+        return _template2.default.Components;
+      }
+    }
+  }, {
+    key: 'scaleVideoContainer',
+    value: function scaleVideoContainer() {
+
+      var height = $(window).height() + 5;
+      var unitHeight = parseInt(height) + 'px';
+      $('.homepage-hero-module').css('height', unitHeight);
+    }
+  }, {
+    key: 'initBannerVideoSize',
+    value: function initBannerVideoSize(element) {
+
+      $(element).each(function () {
+        $(this).data('height', $(this).height());
+        $(this).data('width', $(this).width());
+      });
+
+      this.scaleBannerVideoSize(element);
+    }
+  }, {
+    key: 'scaleBannerVideoSize',
+    value: function scaleBannerVideoSize(element) {
+
+      var windowWidth = $(window).width(),
+          windowHeight = $(window).height() + 5,
+          videoWidth,
+          videoHeight;
+
+      // console.log(windowHeight);
+
+      $(element).each(function () {
+        var videoAspectRatio = $(this).data('height') / $(this).data('width');
+
+        $(this).width(windowWidth);
+
+        if (windowWidth < 1000) {
+          videoHeight = windowHeight;
+          videoWidth = videoHeight / videoAspectRatio;
+          $(this).css({ 'margin-top': 0, 'margin-left': -(videoWidth - windowWidth) / 2 + 'px' });
+
+          $(this).width(videoWidth).height(videoHeight);
+        }
+
+        $('.homepage-hero-module .video-container video').addClass('fadeIn animated');
+      });
+    }
+  }, {
+    key: 'video',
+    value: function video() {
+      $(window).on('resize', function () {
+        this.scaleVideoContainer();
+        this.scaleBannerVideoSize('.video-container .poster img');
+        this.scaleBannerVideoSize('.video-container .filter');
+        this.scaleBannerVideoSize('.video-container video');
+      });
     }
   }]);
 
@@ -78,14 +165,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var home = function home() {
-  return "<div id=\"main\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col s12 m6 main-img\">\n          <img class=\"responsive-img\" src=\"img/rocket.png\" alt=\"web-development\">\n        </div>\n        <div class=\"col s12 m6 center-align main-text\">\n          <h1 id=\"title\">Programador</h1>\n          <div class=\"divider\"></div>\n          <h2 id=\"sub-title\">Mi trabajo es materializar tus proyectos utilizando la tecnologia.</h2>\n        </div>\n      </div>\n    </div>\n  </div>";
+  return "<div id=\"main\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col s12 m6 main-img\">\n          <img class=\"responsive-img\" src=\"img/rocket.png\" alt=\"web-development\">\n        </div>\n        <div class=\"col s12 m6 center-align main-text\">\n          <h1 id=\"title\">Programador</h1>\n          <div class=\"divider\"></div>\n          <h2 id=\"sub-title\">Mi trabajo es materializar tus proyectos utilizando la tecnologia.</h2>\n          <a class=\"waves-effect waves-light btn btn-ornage\"><i class=\"fa fa-envelope-o\"></i>Contacto</a>\n        </div>\n      </div>\n    </div>\n  </div>";
 };
 var Sass = function Sass() {
-  return "<h1 id=\"title\">Sass</h1>";
+  return "<div class=\"homepage-hero-module\">\n    <div class=\"video-container\">\n        <div class=\"filter\"></div>\n        <video autoplay loop class=\"fillWidth\">\n            <source src=\"video/MP4/Aloha-Mundo.mp4\" type=\"video/mp4\" />Your browser does not support the video tag. I suggest you upgrade your browser.\n            <source src=\"video/WEBM/Aloha-Mundo.webm\" type=\"video/webm\" />Your browser does not support the video tag. I suggest you upgrade your browser.\n        </video>\n        <div class=\"poster hidden\">\n            <img src=\"img/Aloha-Mundo.jpg\" alt=\"Home banner\">\n        </div>\n    </div>\n</div>";
 };
 var Components = function Components() {
   return "<h1 id=\"title\">Components</h1>";
 };
+
 exports.default = { home: home, Sass: Sass, Components: Components };
 
 },{}]},{},[2]);
