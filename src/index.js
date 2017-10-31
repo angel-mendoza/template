@@ -9,10 +9,11 @@ class Template {
     this.render()
     this.enrutador()
     this.scaleVideoContainer();
-
+    this.video()
     this.initBannerVideoSize('.video-container .poster img');
     this.initBannerVideoSize('.video-container .filter');
     this.initBannerVideoSize('.video-container video');
+    this.contenScroll();
   }
 
   onClick(){
@@ -63,7 +64,7 @@ class Template {
       videoWidth,
       videoHeight;
 
-      // console.log(windowHeight);
+    console.log(windowHeight);
 
       $(element).each(function(){
           var videoAspectRatio = $(this).data('height')/$(this).data('width');
@@ -89,6 +90,16 @@ class Template {
         this.scaleBannerVideoSize('.video-container .filter');
         this.scaleBannerVideoSize('.video-container video');
     });
+  }
+  contenScroll(){
+    $(window).scroll(function() {
+  if ($(window).scrollTop() > 80) {
+    console.log('mayor')
+  } else {
+    console.log('menor')
+  }
+    });
+
   }
 }
 

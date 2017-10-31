@@ -60,10 +60,11 @@ var Template = function () {
     this.render();
     this.enrutador();
     this.scaleVideoContainer();
-
+    this.video();
     this.initBannerVideoSize('.video-container .poster img');
     this.initBannerVideoSize('.video-container .filter');
     this.initBannerVideoSize('.video-container video');
+    this.contenScroll();
   }
 
   _createClass(Template, [{
@@ -123,7 +124,7 @@ var Template = function () {
           videoWidth,
           videoHeight;
 
-      // console.log(windowHeight);
+      console.log(windowHeight);
 
       $(element).each(function () {
         var videoAspectRatio = $(this).data('height') / $(this).data('width');
@@ -151,6 +152,17 @@ var Template = function () {
         this.scaleBannerVideoSize('.video-container video');
       });
     }
+  }, {
+    key: 'contenScroll',
+    value: function contenScroll() {
+      $(window).scroll(function () {
+        if ($(window).scrollTop() > 80) {
+          console.log('mayor');
+        } else {
+          console.log('menor');
+        }
+      });
+    }
   }]);
 
   return Template;
@@ -168,7 +180,7 @@ var home = function home() {
   return "<div id=\"main\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col s12 m6 main-img\">\n          <img class=\"responsive-img\" src=\"img/rocket.png\" alt=\"web-development\">\n        </div>\n        <div class=\"col s12 m6 center-align main-text\">\n          <h1 id=\"title\">Programador</h1>\n          <div class=\"divider\"></div>\n          <h2 id=\"sub-title\">Mi trabajo es materializar tus proyectos utilizando la tecnologia.</h2>\n          <a class=\"waves-effect waves-light btn btn-ornage\"><i class=\"fa fa-envelope-o\"></i>Contacto</a>\n        </div>\n      </div>\n    </div>\n  </div>";
 };
 var Sass = function Sass() {
-  return "<div class=\"homepage-hero-module\">\n    <div class=\"video-container\">\n        <div class=\"filter\"></div>\n        <video autoplay loop class=\"fillWidth\">\n            <source src=\"video/MP4/Aloha-Mundo.mp4\" type=\"video/mp4\" />Your browser does not support the video tag. I suggest you upgrade your browser.\n            <source src=\"video/WEBM/Aloha-Mundo.webm\" type=\"video/webm\" />Your browser does not support the video tag. I suggest you upgrade your browser.\n        </video>\n        <div class=\"poster hidden\">\n            <img src=\"img/Aloha-Mundo.jpg\" alt=\"Home banner\">\n        </div>\n    </div>\n</div>";
+  return "<div class=\"homepage-hero-module\">\n    <div class=\"video-container\">\n        <div class=\"filter\"></div>\n        <video autoplay loop class=\"fillWidth\">\n            <source src=\"video/MP4/Aloha-Mundo.mp4\" type=\"video/mp4\" />Your browser does not support the video tag. I suggest you upgrade your browser.\n            <source src=\"video/WEBM/Aloha-Mundo.webm\" type=\"video/webm\" />Your browser does not support the video tag. I suggest you upgrade your browser.\n        </video>\n\n    </div>\n</div>";
 };
 var Components = function Components() {
   return "<h1 id=\"title\">Components</h1>";

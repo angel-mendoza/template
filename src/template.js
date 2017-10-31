@@ -23,9 +23,7 @@ const Sass = ()=>{
             <source src="video/MP4/Aloha-Mundo.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
             <source src="video/WEBM/Aloha-Mundo.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
         </video>
-        <div class="poster hidden">
-            <img src="img/Aloha-Mundo.jpg" alt="Home banner">
-        </div>
+
     </div>
 </div>`
 }
